@@ -1,0 +1,49 @@
+version: '3.8'  # Docker Compose file format version
+
+# =========================================================
+# Define all your application services (containers)
+# =========================================================
+services:
+  # SPRING BOOT BACKEND SERVICE
+  backend:
+    build: .  # Build image from Dockerfile in current directory
+    container_name: spring-api  # Name for the container
+    ports:
+      - "8080:8080"  # Map host port 8080 -> container port 8080
+    environment:  # Environment variables passed to Spring Boot
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/mydb  # DB connection string (uses service name as hostname)
+      SPRING_DATASOURCE_USERNAME: root  # MySQL username
+      SPRING_DATASOURCE_PASSWORD: Gaurav  # MySQL password
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update  # Auto-create/alter tables
+    depends_on:
+      - mysql-db  # Ensures MySQL container starts before backend
+    networks:
+      - my-network  # Attach to custom Docker network for communication
+
+  # MYSQL DATABASE SERVICE
+  mysql-db:
+    image: mysql:8  # Use official MySQL version 8 image
+    container_name: mysql-db  # Name for the MySQL container
+    restart: always  # Automatically restart the container if it stops
+    environment:
+      MYSQL_ROOT_PASSWORD: Gaurav  # Root password for MySQL
+      MYSQL_DATABASE: mydb  # Automatically create a database named "mydb"
+    ports:
+      - "3306:3306"  # Expose MySQL to host (optional; required if you want to connect externally)
+    volumes:
+      - db_data:/var/lib/mysql  # Persist MySQL data even if container is removed
+    networks:
+      - my-network  # Same network as backend, allows internal communication
+
+# =========================================================
+# Define named volumes (for data persistence)
+# =========================================================
+volumes:
+  db_data:  # Named volume to persist MySQL data
+
+# =========================================================
+# Define custom Docker network (shared by both services)
+# =========================================================
+networks:
+  my-network:
+    driver: bridge  # Use default bridge driver for internal networking
