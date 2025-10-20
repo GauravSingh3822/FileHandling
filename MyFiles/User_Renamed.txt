@@ -1,0 +1,2 @@
+Welcome to Python File Handling!
+This file was written using FileWriter.This line is appended.

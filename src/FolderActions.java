@@ -1,4 +1,5 @@
 import java.io.File;
+import java.util.Scanner;
 import java.util.function.Predicate;
 
 public class FolderActions {
@@ -37,19 +38,53 @@ public class FolderActions {
     }
 
     public static void main(String[] args) {
-        String folderPath = "/Users/mannu/Desktop/FileHandling/MyFiles";
-        FolderActions.CreateFolder(folderPath);
+        Scanner sc = new Scanner(System.in);
+        String baseFolder = "/Users/mannu/Desktop/FileHandling/";
+        String folderPath = baseFolder + "MyFiles";
+        String newFolderPath = baseFolder + "MyFiles_Renamed";
 
-        String msg1 = FolderActions.FolderExistOrNot(folderPath);
-        System.out.println(msg1);
+        System.out.println(" FOLDER HANDLING MANAGER STARTED SUCCESSFULLY!");
+        while(true){
+            System.out.println("\n========== FOLDER HANDLING MENU ==========");
+            System.out.println("1. Create Folder");
+            System.out.println("2. Check if Folder Exists");
+            System.out.println("3. Raname Folder Name");
+            System.out.println("4. Delete Folder Name");
+            System.out.print(" Enter your choice: ");
 
-        String newFolderPath = "/Users/mannu/Desktop/FileHandling/myFiles";
-        String msg2 = FolderActions.UpdateFolderName(folderPath, newFolderPath);
-        System.out.println(msg2);
+            int choice;
+            if(sc.hasNextInt()){
+                choice=sc.nextInt();
+            }
+            else{
+                System.out.println("Invalid Choice! Please try again.");
+                continue;
+            }
+            sc.nextLine();
+            try{
+                switch (choice){
+                    case 1:
+                        FolderActions.CreateFolder(folderPath);
+                        break;
+                    case 2:
+                        System.out.println(FolderActions.FolderExistOrNot(folderPath));
+                        break;
+                    case 3:
+                        System.out.println(FolderActions.UpdateFolderName(folderPath, newFolderPath));
+                        break;
+                    case 4:
+                        System.out.println(FolderActions.DeleteFolder(folderPath));
+                        break;
+                    default:
+                        System.out.println("Invalid Choice! Please try again.");
+                        break;
+                }
 
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
 
-//        String msg3 = FolderActions.DeleteFolder(folderPath);
-//        System.out.println(msg3);
+        }
 
     }
 
