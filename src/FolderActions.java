@@ -51,6 +51,8 @@ public class FolderActions {
             System.out.println("3. Raname Folder Name");
             System.out.println("4. Delete Folder Name");
             System.out.println("5. List Files in Directory");
+            System.out.println("6. Delete Directory Recursively");
+            System.out.println("7. Exit");
             System.out.print(" Enter your choice: ");
 
             int choice;
