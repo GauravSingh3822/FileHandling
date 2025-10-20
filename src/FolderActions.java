@@ -50,6 +50,7 @@ public class FolderActions {
             System.out.println("2. Check if Folder Exists");
             System.out.println("3. Raname Folder Name");
             System.out.println("4. Delete Folder Name");
+            System.out.println("5. List Files in Directory");
             System.out.print(" Enter your choice: ");
 
             int choice;

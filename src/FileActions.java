@@ -191,7 +191,6 @@ public class FileActions {
 
     public static void main(String[] args) throws IOException {
         Scanner sc = new Scanner(System.in);
-
         String baseFolder = "/Users/mannu/Desktop/FileHandling/MyFiles/";
         String filePath = baseFolder + "User.txt";
         String newFilePath = baseFolder + "User_Renamed.txt";
