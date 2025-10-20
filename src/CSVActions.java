@@ -38,6 +38,7 @@ public class CSVActions {
         }
         scanner.close();
     }
+    // Write to CSV File
     public static void WriteToCsvFile(String csvFilePath, String data) throws IOException {
         try (FileWriter writer = new FileWriter(csvFilePath, true)) {
             writer.append(data).append("\n");
