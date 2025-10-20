@@ -54,6 +54,7 @@ public class FolderActions {
             System.out.println("6. Delete Directory Recursively");
             System.out.println("7. Backup Directory");
             System.out.println("8. Exit");
+            System.out.println("Welcome to FileHandling project!");
             System.out.print(" Enter your choice: ");
 
             int choice;
